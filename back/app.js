@@ -1,8 +1,10 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const userRoutes = require("./routes/user");
+const saucesRoutes = require("./routes/sauces");
 
 const app = express();
 
@@ -20,21 +22,8 @@ app.use((req, res, next) => {
   });
 
 app.use(express.json());
-
-// app.post('/api/auth/login', (req, res, next) => {
-//     console.log(req.body);
-//     res.status(201).json({
-//         message: "Objet passé !"
-//     })
-// });
-
-// app.post('/api/auth/signup', (req, res, next) => {
-//   console.log(req.body);
-//   res.status(201).json({
-//     message: "Objet2 passé !"
-//   })
-// });
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use("/api/sauces", saucesRoutes);
 app.use("/api/auth", userRoutes);
 
 module.exports = app;
