@@ -9,7 +9,7 @@ const saucesRoutes = require("./routes/sauces");
 
 const app = express();
 
-mongoose.connect('mongodb+srv://Yann:Louna60500@cluster0.mwfouqm.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@'+process.env.DB_HOST+'/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
